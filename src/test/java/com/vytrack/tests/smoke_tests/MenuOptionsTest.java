@@ -3,6 +3,8 @@ package com.vytrack.tests.smoke_tests;
 import com.vytrack.pages.LoginPage;
 import com.vytrack.pages.SetAndClosePage;
 import com.vytrack.utilities.ConfigurationReader;
+import com.vytrack.utilities.NavigateToPage;
+import com.vytrack.utilities.StaticWait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
@@ -19,6 +21,8 @@ public class MenuOptionsTest extends SetAndClosePage {
 //        driver.findElement(By.id("_submit")).click();
 
         LoginPage.userLogin(driver,ConfigurationReader.get("driver_username"),ConfigurationReader.get("driver_password"));
+        NavigateToPage.NavigateToModulePage(driver,"Fleet","Vehicles");
+        StaticWait.waitLine(3);
 
 
 
