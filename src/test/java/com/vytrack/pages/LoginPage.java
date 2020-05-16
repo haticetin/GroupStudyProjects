@@ -2,6 +2,7 @@ package com.vytrack.pages;
 
 import com.vytrack.utilities.ConfigurationReader;
 import com.vytrack.utilities.LoadingWaits;
+import com.vytrack.utilities.NavigateToPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,6 +17,10 @@ public class LoginPage {
         driver.findElement(By.id("_submit")).click();
 
         LoadingWaits.expWait(driver);
+
+
+
+
 
     }
 }
