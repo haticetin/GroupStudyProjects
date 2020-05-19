@@ -7,8 +7,8 @@ import org.openqa.selenium.interactions.Actions;
 
 public class NavigateToPage {
 
-    public static void navigateToModulePage (WebDriver driver, String moduleName, String pageName ){
-
+    public static void navigateToModulePage ( String moduleName, String pageName ){
+        WebDriver driver = Driver.get();
         WebElement module = driver.findElement(By.xpath("//a//span[contains(text(),'" + moduleName + "')]"));
         WebElement page = driver.findElement(By.xpath("//span[.='" + pageName + "']"));
 
@@ -17,7 +17,7 @@ public class NavigateToPage {
 
         page.click();
 
-        LoadingWaits.expWait(driver);
+        LoadingWaits.expWait();
 
 
 
