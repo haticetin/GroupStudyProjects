@@ -5,6 +5,9 @@ import com.vytrack.pages.SetAndClosePage;
 import com.vytrack.utilities.ConfigurationReader;
 import com.vytrack.utilities.NavigateToPage;
 import com.vytrack.utilities.StaticWait;
+import com.vytrack.utilities.Verify;
+import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class MenuOptionsTest extends SetAndClosePage {
@@ -23,6 +26,15 @@ public class MenuOptionsTest extends SetAndClosePage {
         NavigateToPage.navigateToModulePage("Fleet","Vehicles");
 
         StaticWait.waitLine(10);
+
+        Verify.verifyTitleSubtitle( "Car - Entities - System - Car - Entities - System", "Cars");
+
+
+
+
+
+
+
 
 
 
