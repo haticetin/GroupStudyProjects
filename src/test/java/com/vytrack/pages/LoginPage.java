@@ -1,21 +1,38 @@
 package com.vytrack.pages;
 
-import com.vytrack.utilities.ConfigurationReader;
-import com.vytrack.utilities.LoadingWaits;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import com.vytrack.utilities.Driver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 
-    public static void userLogin( WebDriver driver, String username, String password){
-        driver.findElement(By.id("prependedInput")).sendKeys(username);
-        driver.findElement(By.id("prependedInput2")).sendKeys(password);
-        driver.findElement(By.id("_submit")).click();
+    public LoginPage(){
 
-        LoadingWaits.expWait(driver);
+        PageFactory.initElements(Driver.get(),this);
 
+    }
+
+    @FindBys({
+
+            @FindBy(id="prependedInput"),
+            @FindBy(name="_username")
+
+    })
+
+    @FindBy(name="_username")
+    public WebElement usernameInput;
+
+    @FindBy(id="prependedInput2")
+    public WebElement passwordInput;
+
+    @FindBy(id="_submit")
+    public WebElement loginBtn;
+
+    public void login(String usernameStr, String passwordStr){
+        usernameInput.sendKeys(usernameStr);
+        passwordInput.sendKeys(passwordStr);
+        loginBtn.click();
     }
 }
