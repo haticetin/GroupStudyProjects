@@ -3,11 +3,10 @@ package com.vytrack.tests.smoke_tests;
 import com.vytrack.pages.LoginPage_GS;
 import com.vytrack.pages.SetAndClosePage;
 import com.vytrack.utilities.ConfigurationReader;
-import com.vytrack.utilities.NavigateToPage;
-import com.vytrack.utilities.StaticWait;
-import com.vytrack.utilities.Verify;
-import org.openqa.selenium.By;
-import org.testng.Assert;
+import static com.vytrack.pages.VytrackUtilities.*;
+import static com.vytrack.utilities.BrowserUtils.*;
+
+
 import org.testng.annotations.Test;
 
 public class MenuOptionsTest extends SetAndClosePage {
@@ -23,11 +22,11 @@ public class MenuOptionsTest extends SetAndClosePage {
 
         LoginPage_GS.userLogin(ConfigurationReader.get("driver_username"),ConfigurationReader.get("driver_password"));
 
-        NavigateToPage.navigateToModulePage("Fleet","Vehicles");
+        navigateToModulePage("Fleet","Vehicles");
 
-        StaticWait.waitLine(10);
+        waitFor(2);
 
-        Verify.verifyTitleSubtitle( "Car - Entities - System - Car - Entities - System", "Cars");
+        verifyTitleSubtitle( "Car - Entities - System - Car - Entities - System", "Cars");
 
 
 

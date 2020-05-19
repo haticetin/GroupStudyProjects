@@ -1,9 +1,9 @@
-package com.vytrack.utilities;
+package com.vytrack.utilities.DeadPool;
 
+import com.vytrack.utilities.DeadPool.ExplicitlyWait;
+import com.vytrack.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class Verify {
@@ -20,10 +20,5 @@ public class Verify {
 
         String actualSubtitle = driver.findElement(By.xpath("(//h1)[2]")).getText();
         Assert.assertEquals(expectedSubtitle, actualSubtitle);
-
-
-
-
-
     }
 }

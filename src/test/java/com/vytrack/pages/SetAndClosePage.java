@@ -1,9 +1,6 @@
 package com.vytrack.pages;
 
-import com.vytrack.utilities.ConfigurationReader;
-import com.vytrack.utilities.Driver;
-import com.vytrack.utilities.StaticWait;
-import com.vytrack.utilities.WebDriverFactory;
+import com.vytrack.utilities.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,6 +8,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
+
+import static com.vytrack.utilities.BrowserUtils.waitFor;
+
 
 public class SetAndClosePage {
 
@@ -32,7 +32,8 @@ public class SetAndClosePage {
     @AfterMethod
     protected void afterMethod()  {
       //  Thread.sleep(2000);  //!!!!
-        StaticWait.waitLine(2);
+       // StaticWait.waitLine(2);
+       waitFor(2);
        // driver.quit();
        // driver=null;
         Driver.closeDriver();
