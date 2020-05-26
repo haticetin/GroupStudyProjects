@@ -1,7 +1,7 @@
 package com.vytrack.pages;
 
-import com.cybertek.utilities.BrowserUtils;
-import com.cybertek.utilities.Driver;
+import com.vytrack.utilities.BrowserUtils;
+import com.vytrack.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -11,7 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public abstract class giBasePage {
+abstract class giBasePage {
 
     @FindBy(css = "div[class='loader-mask shown']")
     @CacheLookup
@@ -29,7 +29,7 @@ public abstract class giBasePage {
     @FindBy(linkText = "My User")
     public WebElement myUser;
 
-    public BasePage() {
+    public void BasePage() {
         PageFactory.initElements(Driver.get(), this);
     }
 
