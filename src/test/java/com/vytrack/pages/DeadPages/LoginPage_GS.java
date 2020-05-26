@@ -1,7 +1,7 @@
-package com.vytrack.pages;
+package com.vytrack.pages.DeadPages;
 
 import com.vytrack.utilities.Driver;
-import static com.vytrack.pages.VytrackUtilities.*;
+import static com.vytrack.pages.DeadPages.VytrackUtilities.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 

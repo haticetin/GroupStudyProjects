@@ -1,4 +1,4 @@
-package com.vytrack.pages;
+package com.vytrack.pages.DeadPages;
 
 import com.vytrack.utilities.DeadPool.ExplicitlyWait;
 import com.vytrack.utilities.Driver;

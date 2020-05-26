@@ -1,9 +1,9 @@
 package com.vytrack.tests.smoke_tests;
 
-import com.vytrack.pages.LoginPage_GS;
-import com.vytrack.pages.SetAndClosePage;
+import com.vytrack.pages.DeadPages.LoginPage_GS;
+import com.vytrack.pages.DeadPages.SetAndClosePage;
 import com.vytrack.utilities.ConfigurationReader;
-import static com.vytrack.pages.VytrackUtilities.*;
+import static com.vytrack.pages.DeadPages.VytrackUtilities.*;
 import static com.vytrack.utilities.BrowserUtils.*;
 
 
