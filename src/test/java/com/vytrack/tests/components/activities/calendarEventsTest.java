@@ -4,6 +4,7 @@ import com.vytrack.pages.CalendarEventsPage;
 import com.vytrack.pages.DashboardPage;
 import com.vytrack.pages.LoginPage;
 import com.vytrack.tests.TestBase;
+import com.vytrack.utilities.BrowserUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -55,8 +56,22 @@ public class calendarEventsTest extends TestBase {
         extentLogger.pass("PASS: TestCase #2 Calendar Events Option Page Number Verification");
     }
 
+    @Test(priority = 2, description = "TestCase #3")
+    public void verifyPageNumberTest() {
+
+        extentLogger = report.createTest("TestCase #2:Calendar Events Option Page Number Verification");
+
+        testCaseSameLines();
+
+        extentLogger.info("Verify that view per page number is equals to \"25\"");
+
+        BrowserUtils.waitFor(2);
+
+        Assert.assertEquals(calendarEventsPage.viewPerPage.getText().trim(), "25");
+
+        extentLogger.pass("PASS: TestCase #2 Calendar Events view per page number Verification");
 
 
-
+    }
 
 }
