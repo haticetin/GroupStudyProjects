@@ -3,6 +3,7 @@ package com.vytrack.pages;
 import com.vytrack.utilities.BrowserUtils;
 import com.vytrack.utilities.Driver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -42,6 +43,46 @@ public class CalendarEventsPage extends BasePage {
 
     @FindBy (css = ".grid-body-cell-title")
     public WebElement titleCells;
+
+    @FindBy(css = "button[data-toggle='dropdown'][class='btn dropdown-toggle ']")
+    public WebElement viewPerPageNumber;
+
+    @FindBy(xpath = "//a[@data-size='100']")
+    public WebElement viewPerPageSelect100;
+
+    @FindBy(xpath = "//label[starts-with(text(), 'Total')]")
+    public WebElement textOFnumberOfEvents;
+
+    @FindBy(xpath = "//div[.='Testers meeting']")
+    public WebElement testerMeetingControlTitle;
+
+
+    public int calculateNumberOfEvents() {
+        viewPerPage.click();
+        viewPerPageSelect100.click();
+        int selectedRowsNumber = Integer.parseInt(viewPerPageNumber.getText());
+        String pathRows = null;
+        int countPageNumber = 0;
+        for (int i = 1; i <= selectedRowsNumber; i++) {
+            pathRows = "tr.grid-row:nth-of-type(" + i + ")";
+            try {
+                if (!(Driver.get().findElement(By.cssSelector(pathRows)).equals(null))) {
+                    countPageNumber++;
+                }
+                if (i == selectedRowsNumber) {
+                    Driver.get().findElement(By.cssSelector(".fa-chevron-right.hide-text")).click();
+                    waitUntilLoaderScreenDisappear();
+                    i = 0;
+                }
+            } catch (NoSuchElementException e) {//NoSuchElementException coming from org.openga.selenium.
+                //System.out.println(e.toString());
+                return countPageNumber;
+            }
+        }
+        return countPageNumber;
+    }
+
+
 
 
 
