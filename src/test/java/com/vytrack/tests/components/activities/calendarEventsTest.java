@@ -73,5 +73,81 @@ public class calendarEventsTest extends TestBase {
 
 
     }
+           /*1. Go to “https://qa1.vytrack.com/
+            // 2.// 2. Login as a store manager
+           3. Navigate to “Activities -> Calendar Events”
+           4. Verify that number of calendar events (rows in the table) is equals to number of records*/
 
+    @Test(priority = 3, description = "TestCase #4")
+
+
+    public void verifyRowsTable() {
+        extentLogger = report.createTest(("TestCase #4:Verify Rows in Table"));
+
+        testCaseSameLines();
+
+        calendarEventsPage.waitUntilLoaderScreenDisappear();
+
+        String totalRecordText = calendarEventsPage.textOFnumberOfEvents.getText();
+        System.out.println(totalRecordText);
+
+        int expectedOfNumberOfEvents = Integer.valueOf(totalRecordText.replaceAll("[^0-9]", ""));
+
+        int actualNumberOfEvents = calendarEventsPage.calculateNumberOfEvents();
+
+        Assert.assertEquals(actualNumberOfEvents, expectedOfNumberOfEvents);
+
+        System.out.println(expectedOfNumberOfEvents);
+        System.out.println(actualNumberOfEvents);
+
+       /* @Test
+        /*public void testcase4_2() {
+        /*
+        1. Go to “https://qa1.vytrack.com/"
+        2. Login as a store manager
+        3. Navigate to “Activities -> Calendar Events”
+        4. Verify that number of calendar events (rows in the table) is equals to number of records
+         */
+            /*extentLogger = report.createTest("Total Record Number Verification");
+            extentLogger.info("Login as a Store Manager");
+            new LoginPage().loginAsStoreManager();
+            DashboardPage dashboardPage = new DashboardPage();
+            extentLogger.info("Navigate to Activities -- Calendar Events");
+            dashboardPage.navigateToModule("Activities", "Calendar Events");
+
+            CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
+            //System.out.println(calendarEventsPage.totalRecords.getText());
+            calendarEventsPage.waitUntilLoaderScreenDisappear();
+            extentLogger.info("Getting the number of rows");
+            int rowSizePerPAge = calendarEventsPage.allRows.size();
+            extentLogger.info("Getting the total page number");
+
+            String[] s = calendarEventsPage.pageNumberRecord.getText().split(" ");
+            String pageNumber = s[1]; //63
+            int pageRecordNumber = Integer.parseInt(s[1]);  //63
+            extentLogger.info("Getting the row number of last page");
+            calendarEventsPage.pageNumber.sendKeys(pageNumber + Keys.ENTER);
+           // waitFor(5);
+            int totalRowSize = calendarEventsPage.allRows.size() + ((pageRecordNumber-1) * rowSizePerPAge);
+            System.out.println(totalRowSize);
+            extentLogger.info("Verify actual displayed record number is "+totalRowSize);
+            Assert.assertEquals(1559, totalRowSize, "verify displayed total record number is equal to total row number");
+            extentLogger.pass("PASS: Calender Events Total Record Test");
+        }
+
+
+
+
+
+
+
+
+
+
+    }
+
+}
+
+             */
+    }
 }
