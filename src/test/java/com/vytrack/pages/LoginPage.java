@@ -11,16 +11,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage {
 
-    public static void userLogin( WebDriver driver, String username, String password){
-        driver.findElement(By.id("prependedInput")).sendKeys(username);
-        driver.findElement(By.id("prependedInput2")).sendKeys(password);
-        driver.findElement(By.id("_submit")).click();
 
-        LoadingWaits.expWait(driver);
 
 
 
 
 
     }
-}
+
