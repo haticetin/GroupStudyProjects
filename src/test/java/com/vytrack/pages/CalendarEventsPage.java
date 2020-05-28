@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class CalendarEventsPage extends BasePage {
 
     public CalendarEventsPage() {
@@ -55,6 +57,21 @@ public class CalendarEventsPage extends BasePage {
 
     @FindBy(xpath = "//div[.='Testers meeting']")
     public WebElement testerMeetingControlTitle;
+
+    @FindBy(xpath = "//button[@class='btn btn-default btn-small dropdown-toggle']") //(//i[@class='caret'])[1]")
+    public WebElement topCheckBox;
+
+    @FindBy(xpath = "(//a[text()='All'])[2]")
+    public WebElement allButton;
+
+    @FindBy(xpath = "//tbody/tr/td/input")  // "//input[@type='checkbox']")
+    public List<WebElement> allCheckBox;
+
+    @FindBy(xpath = "//i[@class='fa-chevron-right hide-text']")
+    public WebElement changePage;
+
+    @FindBy(xpath = "//tbody/tr")
+    public List<WebElement> listOfRecord;
 
 
     public int calculateNumberOfEvents() {
@@ -127,6 +144,22 @@ public class CalendarEventsPage extends BasePage {
     public WebElement getControlElement(String data){
 
         return Driver.get().findElement(By.xpath("//div[@class='control-label'][contains(text(),'" + data + "')]"));
+    }
+
+    public void selectCheckBox(){
+        topCheckBox.click();
+        waitUntilLoaderScreenDisappear();
+        allButton.click();
+        waitUntilLoaderScreenDisappear();
+    }
+
+    public List<WebElement> getCheckBox() {
+
+        return allCheckBox;
+    }
+    public List<WebElement> getListOfRecord(){
+
+        return listOfRecord;
     }
 
 }
