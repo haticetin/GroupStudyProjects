@@ -5,6 +5,7 @@ import com.vytrack.pages.DashboardPage;
 import com.vytrack.pages.LoginPage;
 import com.vytrack.tests.TestBase;
 import com.vytrack.utilities.BrowserUtils;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -136,18 +137,45 @@ public class calendarEventsTest extends TestBase {
         }
 
 
-
-
-
-
-
-
-
-
     }
 
 }
 
              */
+    }
+
+    @Test(priority = 4, description = "TestCase #5")
+    public void verifyEventsSelected() {
+
+        extentLogger = report.createTest(("TestCase #4:Verify all checkbox selected"));
+
+        testCaseSameLines();
+        calendarEventsPage.selectCheckBox();
+
+        boolean flag = true;
+        int page =0;
+        int totalSelectedRecords= 0;
+        do {
+            for (WebElement selectedElement : calendarEventsPage.getCheckBox()) {
+                Assert.assertTrue(selectedElement.isSelected(),"verify checkbox is selected");
+                totalSelectedRecords++;
+            }
+            String firstrow = calendarEventsPage.getListOfRecord().get(1).getText();
+            calendarEventsPage.getListOfRecord().clear();
+            calendarEventsPage.changePage.click();
+            page++;
+            BrowserUtils.waitFor(2);
+            if(calendarEventsPage.listOfRecord.get(1).getText().equals(firstrow) && totalSelectedRecords==calendarEventsPage.getTotalRecords()
+                    && page==calendarEventsPage.getTotalPageInt()){
+                flag=false;
+            }
+        }while (flag);
+
+
+        System.out.println("page = " + page);
+        System.out.println("totalSelectedRecords = " + totalSelectedRecords);
+        System.out.println("flag = " + flag);
+
+
     }
 }
