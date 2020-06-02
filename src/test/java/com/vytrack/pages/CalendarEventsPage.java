@@ -5,6 +5,7 @@ import com.vytrack.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -72,6 +73,27 @@ public class CalendarEventsPage extends BasePage {
 
     @FindBy(xpath = "//tbody/tr")
     public List<WebElement> listOfRecord;
+
+    @FindBy(xpath = "(//div[@class='btn filter-criteria-selector oro-drop-opener oro-dropdown-toggle filter-default-value'])[1]")
+    public WebElement titleButton;
+
+    @FindBy(name="value")
+    public WebElement titleBox;
+
+    @FindBy(xpath = "//button[@class='btn btn-primary filter-update']")
+    public WebElement updateButton;
+
+    @FindBy(xpath = "//i[@class='fa-filter hide-text']")
+    public WebElement manageFiltersBtn;
+
+    @FindBy(xpath = "//a[contains(text(),'...')]")
+    public WebElement dropdownBtn;
+
+    @FindBy(xpath = "//a[@title='View']")
+    public WebElement editBtn;
+
+    @FindBy(xpath = "//div[@class='control-label']")
+    public List<WebElement> testerMeetingText;
 
 
     public int calculateNumberOfEvents() {
@@ -162,4 +184,27 @@ public class CalendarEventsPage extends BasePage {
         return listOfRecord;
     }
 
-}
+    public void searchEvents(String eventName) {
+        manageFiltersBtn.click();
+        waitUntilLoaderScreenDisappear();
+        titleButton.click();
+        waitUntilLoaderScreenDisappear();
+        titleBox.sendKeys(eventName);
+        updateButton.click();
+        waitUntilLoaderScreenDisappear();
+    }
+
+    public void verifyTestersMeeting(){
+
+        Actions actions = new Actions(Driver.get());
+
+        BrowserUtils.waitFor(3);
+
+        for(int i=1;i<=4;i++) {
+            actions.moveToElement(Driver.get().findElement(By.xpath("(//a[contains(text(),'...')])["+ i +"]"))).perform();
+            BrowserUtils.clickWithJS(editBtn);
+        }
+
+    }
+
+    }

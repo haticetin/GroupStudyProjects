@@ -5,6 +5,7 @@ import com.vytrack.pages.DashboardPage;
 import com.vytrack.pages.LoginPage;
 import com.vytrack.tests.TestBase;
 import com.vytrack.utilities.BrowserUtils;
+import com.vytrack.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -153,11 +154,11 @@ public class calendarEventsTest extends TestBase {
         calendarEventsPage.selectCheckBox();
 
         boolean flag = true;
-        int page =0;
-        int totalSelectedRecords= 0;
+        int page = 0;
+        int totalSelectedRecords = 0;
         do {
             for (WebElement selectedElement : calendarEventsPage.getCheckBox()) {
-                Assert.assertTrue(selectedElement.isSelected(),"verify checkbox is selected");
+                Assert.assertTrue(selectedElement.isSelected(), "verify checkbox is selected");
                 totalSelectedRecords++;
             }
             String firstrow = calendarEventsPage.getListOfRecord().get(1).getText();
@@ -165,17 +166,32 @@ public class calendarEventsTest extends TestBase {
             calendarEventsPage.changePage.click();
             page++;
             BrowserUtils.waitFor(2);
-            if(calendarEventsPage.listOfRecord.get(1).getText().equals(firstrow) && totalSelectedRecords==calendarEventsPage.getTotalRecords()
-                    && page==calendarEventsPage.getTotalPageInt()){
-                flag=false;
+            if (calendarEventsPage.listOfRecord.get(1).getText().equals(firstrow) && totalSelectedRecords == calendarEventsPage.getTotalRecords()
+                    && page == calendarEventsPage.getTotalPageInt()) {
+                flag = false;
             }
-        }while (flag);
+        } while (flag);
 
 
         System.out.println("page = " + page);
         System.out.println("totalSelectedRecords = " + totalSelectedRecords);
         System.out.println("flag = " + flag);
+    }
 
+    @Test(priority = 5, description = "TestCase #6")
+    public void verifyTesterMeeting() {
+
+        extentLogger = report.createTest(("TestCase #5:Verify all checkbox selected"));
+
+        testCaseSameLines();
+
+        String eventName = "Testers Meeting";
+        calendarEventsPage.searchEvents(eventName);
+        calendarEventsPage.verifyTestersMeeting();
+
+        BrowserUtils.waitFor(3);
+
+        Driver.get().navigate().back();
 
     }
 }
